@@ -1,6 +1,5 @@
 package bbc.codingtests.gameoflife;
 
-import bbc.codingtests.gameoflife.gamestate.GameState;
 import bbc.codingtests.gameoflife.gamestate.GameStateImpl;
 
 /**
@@ -14,7 +13,7 @@ public class Main {
                 "-***-\n--*--\n-----\n");*/
         GameStateImpl state = new GameStateImpl("-----\n-----\n" +
                 "-***-\n-----\n-----\n"); //Glider
-        char[][] initial = state.getBoard();
+        char[][] initial = state.getBoard(); // Draw the initial board
 
         for (char[] line : initial) {
             for (char coll : line) {
@@ -26,7 +25,7 @@ public class Main {
 
         while (true) {
             System.out.println("NEW GENERATION");
-            char[][] newState = state.evolveState();
+            char[][] newState = state.evolveBoard();
             for (char[] line : newState) {
                 for (char coll : line) {
                     System.out.print(coll);
@@ -34,7 +33,7 @@ public class Main {
                 System.out.println();
             }
 
-            Thread.sleep(1000);
+            Thread.sleep(1000); // Wait for 1 second before drawing the new generation
 
         }
     }

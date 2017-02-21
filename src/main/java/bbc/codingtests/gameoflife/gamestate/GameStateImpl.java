@@ -1,6 +1,8 @@
 package bbc.codingtests.gameoflife.gamestate;
 
 
+import java.util.Arrays;
+
 public class GameStateImpl implements GameState {
     private int numRows;
     private int numCols;
@@ -8,18 +10,17 @@ public class GameStateImpl implements GameState {
 
     private char board[][];
     private String rows[];
-    GameStateImpl state;
 
 
-    //TODO implement this method such    that live cells are represented as a '*' and dead cells are represented by a '.'
-    //TODO use newline ('\n') to separate rows
-    @Override
+
     public String toString() {
-        return new String();
+       return Arrays.deepToString(board);
     }
 
-    //TODO implement this constructor to parse an input string and return a new GameStateImpl object representing what you got in the string
-    //TODO as above, live cells are '*' and dead cells are '.' Rows are separated by newline ('\n')
+    /**
+     * Constructor for game state. Takes an input string and creates a game of life board from it
+     * @param input input string each row is separated by \n symbol, lines must be of equal length
+     */
     public GameStateImpl(String input) {
         this.rows = input.split("\n");
         this.numRows = rows.length;
@@ -33,7 +34,12 @@ public class GameStateImpl implements GameState {
 
     }
 
-    //TODO implement this method according to explanation in GameState.java
+    /**
+     * Checks if the cell is allive at the current position
+     * @param row cell's row
+     * @param col cells column
+     * @return true if cell at given coordinates is alive, else otherwise
+     */
     public boolean isCellAliveAt(int row, int col) {
         if (row >= 0 && row <= numRows && col >= 0 && col <= numCols) {
             if (board[row][col] == '*') return true;
@@ -89,13 +95,22 @@ public class GameStateImpl implements GameState {
         return 0;
     }
 
+    /**
+     *
+     * @param row
+     * @param col
+     * @return true if cell is alive after evolution, else otherwise
+     */
     private boolean evolveCell(int row, int col) {
         int neighbours = checkCellNeighbours(row, col);
-        return neighbours == 3;
+        return isCellAliveAt(row, col) && neighbours == 2 || neighbours == 3;
     }
 
-
-    public char[][] evolveState() {
+    /**
+     * Evloves the board
+     * @return char array of board
+     */
+    public char[][] evolveBoard() {
         char[][] newState = new char[numRows][numCols];
         for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numCols; j++) {
@@ -105,8 +120,8 @@ public class GameStateImpl implements GameState {
 
             }
         }
-        board =newState;
-        return  newState;
+        board = newState;
+        return newState;
     }
 
     public int getRows() {

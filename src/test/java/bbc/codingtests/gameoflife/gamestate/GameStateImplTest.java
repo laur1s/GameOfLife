@@ -2,8 +2,6 @@ package bbc.codingtests.gameoflife.gamestate;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.junit.Assert.*;
 
 /**
@@ -11,15 +9,20 @@ import static org.junit.Assert.*;
  */
 public class GameStateImplTest {
 
+    @Test
+    public void print() {
+        GameStateImpl gameState = new GameStateImpl("--*\n**-\n");
+        System.out.print(gameState.toString());
+    }
 
     @Test
     public void evolveState() throws Exception {
-        GameStateImpl gameState = new GameStateImpl("--*\n**-\n");
-        char[][]c =  gameState.evolveState();
-        for (char[] line:c) {
-            for (char coll:line) {
-                System.out.print(coll);
-            } System.out.println();
+        GameStateImpl gameState = new GameStateImpl("--*\n-*-\n");
+        char[][] c = gameState.evolveBoard();
+        for (char[] line : c) {
+            for (char coll : line) {
+                assertEquals(coll, '-');
+            }
 
         }
 
