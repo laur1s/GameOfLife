@@ -10,8 +10,10 @@ public class Main {
 
 
     public static void main(String args[]) throws InterruptedException {
-        GameStateImpl state = new GameStateImpl("-----\n--*--\n" +
-                "-***-\n--*--\n-----\n");
+      /*  GameStateImpl state = new GameStateImpl("-----\n--*--\n" +
+                "-***-\n--*--\n-----\n");*/
+        GameStateImpl state = new GameStateImpl("-----\n-----\n" +
+                "-***-\n-----\n-----\n"); //Glider
         char[][] initial = state.getBoard();
 
         for (char[] line : initial) {
