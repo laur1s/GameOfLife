@@ -12,7 +12,8 @@ public class GameStateImplTest {
 
     @Test
     public void isCellAliveAt() throws Exception {
-        GameStateImpl gameState = new GameStateImpl("*\n*\n");
+        GameStateImpl gameState = new GameStateImpl("*--\n*--\n*--\n");
+        gameState.isCellAliveAt(2,0);
         //System.out.print(gameState.toString());
 
 

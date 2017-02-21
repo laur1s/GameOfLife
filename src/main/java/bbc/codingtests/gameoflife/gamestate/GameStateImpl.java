@@ -41,34 +41,49 @@ public class GameStateImpl implements GameState {
 
     //TODO implement this method according to explanation in GameState.java
     public boolean isCellAliveAt(int row, int col) {
-        if (row > 0 && row <= numRows && col > 0 && col <= numCols) {
+        System.out.print("hello");
+        int neighbours = 0;
+        if (row >= 0 && row <= numRows && col >= 0 && col <= numCols) {
             int decRow = row - 1;
             int incRow = row + 1;
             int decCol = col - 1;
             int incCol = col + 1;
-            int neighbours = 0;
-
-            if(decRow> 0){
-                if (board[decRow][col] == '*') neighbours++; // Check the left neigbor
-            }
 
 
+            if (decRow > 0) {
+                if (board[decRow][col] == '*') neighbours++; // Check the below neighbour
+                if (incCol <= numCols) {
+                    if (board[decRow][incCol] == '*') neighbours++; // check the bellow right neighbour
+                }
+                if (decCol > 0) {
+                    if (board[decRow][decCol] == '*') neighbours++; // check the bellow left neighbour
+                }
+            }
 
-            if (decRow > 0 && incCol <= numCols) {
-                if (board[decRow][decCol] == '*') neighbours++;
-            }
-            if (decRow > 0 && decCol > 0) {
-                if (board[decRow][decCol] == '*') neighbours++;
+            if (incRow < numRows) {
+                if (board[incRow][col] == '*') neighbours++; // Check the upper neighbour
+                if (incCol <= numCols) {
+                    if (board[incRow][incCol] == '*') neighbours++; //check upper right neighbour
+                }
+                if (decCol > 0) {
+                    if (board[decRow][decCol] == '*') neighbours++; //check upper left neighbour
+                }
             }
 
-            if (incRow <= numRows && decCol <= numCols) {
-                if (board[incRow][decCol] == '*') neighbours++;
+            if (decCol > 0) {
+                if (board[row][decCol] == '*') neighbours++; // Check the left neighbour
             }
-            if (decRow <= numRows && decCol <= numCols) {
-                if (board[decRow][decCol] == '*') neighbours++;
+
+            if (incCol <= numRows) {
+                if (board[row][incCol] == '*') neighbours++; // Check the right neighbour
             }
+
 
         } else return false;
+        if( neighbours==3){
+            return true;
+        }
+        if(neighbours==)
 
         return true;
     }
